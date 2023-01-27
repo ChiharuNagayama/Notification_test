@@ -34,6 +34,12 @@
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_division.xml" value="0.1" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_manage.xml" value="0.14764492753623187" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_send_test.xml" value="0.1" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_send_to_user.xml" value="0.1796875" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_schedule.xml" value="0.1796875" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_setting.xml" value="0.1796875" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/item_dropdown_layout.xml" value="0.1796875" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/item_select_layout.xml" value="0.1796875" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/layout_notification.xml" value="0.1796875" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/notification_item.xml" value="0.1" />
         <entry key="..\:/work/Notification/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
       </map>
