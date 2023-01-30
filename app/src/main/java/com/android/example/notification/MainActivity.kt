@@ -25,6 +25,7 @@ import com.android.example.notification.ui.setting.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,11 +59,35 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("BODY", "ぼでぃだよおおおお")
                 PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             }
+//        5秒後に1回のみ通知
         alarmMgr.set(
             AlarmManager.ELAPSED_REALTIME_WAKEUP,
             SystemClock.elapsedRealtime() + 5 * 1000,
             alarmIntent
         )
+
+////        起動して５秒後通知、そのあと１０秒ごとに通知
+//        alarmMgr.setInexactRepeating(
+//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//            SystemClock.elapsedRealtime() + 5 * 1000,
+//            10 * 1000,
+//            alarmIntent
+//        )
+
+////起動する時間を指定（16時）
+//        val calendar: Calendar = Calendar.getInstance().apply {
+//            timeInMillis = System.currentTimeMillis()
+//            set(Calendar.HOUR_OF_DAY, 16)
+//        }
+//
+////指定時間（16時）にアラームを実行、以降は1日間隔
+//        alarmMgr.setInexactRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            calendar.timeInMillis,
+//            AlarmManager.INTERVAL_DAY,
+//            alarmIntent
+//        )
+
 
     }
 }

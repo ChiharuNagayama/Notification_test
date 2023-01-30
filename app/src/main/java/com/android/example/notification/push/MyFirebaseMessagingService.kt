@@ -66,7 +66,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .addDestination(destId)
             .setArguments(bundle)
             .createPendingIntent()
-//          .通知を送るメソッド（bundle）?
     }
 
 
