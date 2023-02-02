@@ -1,5 +1,6 @@
 package com.android.example.notification.ui.budget
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,7 +44,9 @@ class BudgetHorizontalChartViewModel(dataBase: BudgetDataBase) : ViewModel() {
            results.add( BudgetValueBean(data2))
            val data3  =BudgetGraphData ( "定期支払い",2800f,9200f)
            results.add( BudgetValueBean(data3))
-       }
+
+
+        }
         else if(month == "2"){
             val data  =BudgetGraphData ("服飾費",3000f,6000f)
             results.add( BudgetValueBean(data))
@@ -181,9 +184,15 @@ class BudgetHorizontalChartViewModel(dataBase: BudgetDataBase) : ViewModel() {
 
 
     private fun createTotalBarData(): BarData {
-        //表示用サンプルデータの予算総額作成
-        val total = 20000f
-        val actual = 9700f
+
+
+
+
+
+        //表示用サンプルデータの予算総額作成(1月に揃えました)
+
+        val total = 34000f
+        val actual = 17800f
 
         //①Entryにデータ格納
         var entryList = mutableListOf<BarEntry>()
