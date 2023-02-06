@@ -43,7 +43,7 @@
             android:enabled="true"
             android:exported="false">
         </service>
-        <receiver android:name=".AlarmReceiver" android:process=":remote" />
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>

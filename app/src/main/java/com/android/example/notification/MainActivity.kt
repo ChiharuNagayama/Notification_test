@@ -56,73 +56,44 @@ class MainActivity : AppCompatActivity() {
         /**ここからアラーム機能の実装
          * workで繰り返し時間を取得する→有る一定の時間になったらserviceに行く
          * */
-// WorkRequest を作成　　　　　　　　　　　　　　　　　　　　　　　　　　　　一時間に一度にあとでかえる
-    val notifyWorkRequest = PeriodicWorkRequestBuilder<NotifyWork>(1, TimeUnit.SECONDS)
+        val alarmMgr: AlarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmIntent: PendingIntent = Intent(application, AlarmReceiver::class.java).let { intent ->
 
-    .build()
+            var yosangaku =  10000
+            var huku = 3000
+            var mizu = 400
 
-        // システムに WorkRequest を送信する
-        WorkManager
-            .getInstance(applicationContext)
-            .enqueue(notifyWorkRequest)
+//                デバッグは条件変更のたびにアンスト＋通知ONすること
+            var msg1 = if (yosangaku < huku+mizu){
+                "予算額を超過しているよ！"
+            } else {
+                "まだまだ予算が余っているよ"
+            }
+
+            var msg2 = if (yosangaku < huku+mizu){
+                "超過"
+            } else {
+                "余裕"
+            }
+
+            intent.putExtra("TITLE",msg1)
+            intent.putExtra("BODY",msg2)
+            PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        }
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.DAY_OF_MONTH,6)
+        }
 
 
-
-        // Intentオブジェクトからデータを取得
-// <- アクティビティクラスはIntentオブジェクトをintentプロパティとして保持
-//        val intent = Intent(application, SoundManageService::class.java)
-//        startService(intent)
-
-
-//ここからアラームマネージャのコーディング
-//
-//        //実行するクラスを指定
-//        val alarmMgr: AlarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        val alarmIntent: PendingIntent =
-//            Intent(application, AlarmReceiver::class.java).let { intent ->
-//                intent.putExtra("TITLE", "たいとるだよ")
-//                intent.putExtra("BODY", "ぼでぃだよおおおお")
-//                PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-//            }
-//
-//
-//        // レシーバの登録
-//        val ar = AlarmReceiver()
-//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-//        registerReceiver(ar, filter)
-//
-////        5秒後に1回のみ通知
-//        alarmMgr.set(
-//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//            SystemClock.elapsedRealtime() + 100 * 1000,
-//            alarmIntent
-//        )
-//
-//
-//
-//////        起動して５秒後通知、そのあと１０秒ごとに通知
-////        alarmMgr.setInexactRepeating(
-////            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-////            SystemClock.elapsedRealtime() + 5 * 1000,
-////            10 * 1000,
-////            alarmIntent
-////        )
-//
-//////起動する時間を指定（16時）
-////        val calendar: Calendar = Calendar.getInstance().apply {
-////            timeInMillis = System.currentTimeMillis()
-////            set(Calendar.HOUR_OF_DAY, 16)
-////        }
-////
-//////指定時間（16時）にアラームを実行、以降は1日間隔
-////        alarmMgr.setInexactRepeating(
-////            AlarmManager.RTC_WAKEUP,
-////            calendar.timeInMillis,
-////            AlarmManager.INTERVAL_DAY,
-////            alarmIntent
-////        )
-
-//    ここまでアラームマネージャーのコーディング
+        //25日（指定時間）にアラームを実行、以降は1日間隔
+        alarmMgr.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            alarmIntent
+        )
 
     }
 }
